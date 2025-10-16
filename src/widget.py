@@ -19,3 +19,10 @@ def get_mask_account(account_number: str) -> str:
     account = account_number.strip()
     masked_account_number = "**" + account[-4:]
     return masked_account_number
+
+
+def get_date(date_string):
+
+    date_part = date_string.split('T')[0]
+    year, month, day = date_part.split('-')
+    return f"{day}.{month}.{year}"
