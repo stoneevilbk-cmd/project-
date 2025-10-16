@@ -22,7 +22,9 @@ def get_mask_account(account_number: str) -> str:
 
 
 def get_date(date_string):
-
+    """
+    Возвращает строку с датой.
+    """
     date_part = date_string.split('T')[0]
     year, month, day = date_part.split('-')
     return f"{day}.{month}.{year}"
