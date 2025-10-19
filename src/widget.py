@@ -14,21 +14,6 @@ def get_mask_number(number: str) -> str:
         return result
 
 
-number = input("Please enter a number: ")
-if number.startswith("4"):
-    print("Visa ", get_mask_number(number))
-
-elif number.startswith("5"):
-    print("MasterCard ", get_mask_number(number))
-
-elif number.startswith("5"):
-    print("MasterCard ", get_mask_number(number))
-
-elif number.startswith("6"):
-    print("UnionPay ", get_mask_number(number))
-
-elif number.startswith("22"):
-    print("Мир ", get_mask_number(number))
-
-else:
-    print("Счет ", get_mask_number(number))
+number = input("Please enter the account type and number: ")
+type, card_number = number.split(maxsplit=1)
+print(type, get_mask_number(card_number))
