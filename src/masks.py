@@ -7,20 +7,19 @@ def get_mask_card_number(card_number: str) -> str:
     if len(card) != 16 or not card.isdigit():
         raise ValueError("Номер карты должен содержать ровно 16 цифр")
 
-    masked_part_card = "*" * (len(card) - 10)
-    result = card[:6] + masked_part_card + card[-4:]
+    result = f"{card[:4]} {card[4:6] + "**"} **** {card[-4:]}"
     return result
 
 
-def mask_account_card(account_number: str) -> str:
+def get_mask_account(account_number: str) -> str:
     """
-    Маскирует номер карты, оставляя последние 4 цифры и "**" перед ними.
+    Маскирует номер счета, оставляя последние 4 цифры и "**" перед ними.
     """
     account = account_number.strip()
     masked_account_number = "**" + account[-4:]
     return masked_account_number
 
 
-number = input("Please enter a number: ")
-print(get_mask_card_number(number))
-print(get_mask_account(number))
+# number = input("Please enter a number: ")
+# print(get_mask_card_number(number))
+# print(get_mask_account(number))

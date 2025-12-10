@@ -1,19 +1,21 @@
+from src.masks import get_mask_account, get_mask_card_number
+
+
 def get_mask_number(number: str) -> str:
     """
-    Маскирует номер карты, оставляя первые 6 и последние 4 цифры видимыми.
+    Маскирует номер карты или счета, оставляя первые 6 и последние 4 цифры видимыми.
     """
-    card = number.strip()
-
-    if len(card) != 16:
-        account = number.strip()
-        masked_account_number = "**" + account[-4:]
-        return masked_account_number
+    number = number.strip()
+    type, number = number.rsplit(maxsplit=1)
+    if len(number) != 16:
+        return type + " " + get_mask_account(number)
     else:
-        masked_part_card = "*" * (len(card) - 10)
-        result = card[:6] + masked_part_card + card[-4:]
-        return result
+        return f"{type} {get_mask_card_number(number)}"
 
 
 number = input("Please enter the account type and number: ")
-type, card_number = number.split(maxsplit=1)
-print(type, get_mask_number(card_number))
+print(get_mask_number(number))
+
+# test_1 = "Visa Platinum 7000792289606361"
+# test_2 = "Счет 73654108430135874305"
+# print(get_mask_number(test_1), get_mask_number(test_2))
